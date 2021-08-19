@@ -32,6 +32,7 @@ footer {
 #footer-header{
     margin-left: 15px;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 #current-position-btn {
@@ -69,8 +70,8 @@ footer {
     background-color: cornflowerblue;
     opacity: 0.95;
 
-    width: 25px;
-    height: 25px;
+    width: 44px;
+    height: 44px;
 
     border-radius: 50%;
 
@@ -79,13 +80,12 @@ footer {
 }
 
 .mark {
-    border:darkblue solid 0.5px;
-    background-color:royalblue;
-
-    width: 20px;
-    height: 20px;
-
-    border-radius: 35%;
+    width: 0;
+    height: 0;
+   
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 23px solid royalblue;
 }
 
 .dataMark {

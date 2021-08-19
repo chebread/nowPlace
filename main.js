@@ -6,6 +6,7 @@ var options = {
 
 var map = new naver.maps.Map('map-view', options); // 맵을 출력해요
 
+// 현재 위치 마커
 if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원한다면 이 로직을 실행해요
     navigator.geolocation.getCurrentPosition(function (position) {
         // 위치 기능이 켜저 있다면
@@ -31,7 +32,6 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
         if (nowMark.getMap()) {
             naver.maps.Event.addListener(nowMark, 'click', function(e) {
                 map.setCenter(nowPosition);
-                map.setZoom(15, true)
             });
         }
 
@@ -63,7 +63,6 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
         if (nowMark.getMap()) {
             naver.maps.Event.addListener(nowMark, 'tab, click', function(e) {
                 map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
-                map.setZoom(15, true)
             });
         }
 
