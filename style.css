@@ -93,6 +93,16 @@ footer {
     border-radius: 35%;
 }
 
+.dataMark {
+    border:seagreen solid 0.5px;
+    background-color:darkseagreen;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 35%;
+}
+
 @keyframes pulse {
     0% {
         box-shadow: 0 0 0 0 cornflowerblue;
