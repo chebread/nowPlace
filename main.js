@@ -31,8 +31,14 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
         if (nowMark.getMap()) {
             naver.maps.Event.addListener(nowMark, 'click', function(e) {
                 map.setCenter(nowPosition);
+                map.setZoom(15, true)
             });
         }
+
+        $("#current-position-btn").click(() => {
+            map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
+            map.setZoom(15, true)
+        })
     }, function () {
         // 위치 기능이 켜저 있지 않다면
         // 취소선을 유지한다. 그리고 현재 위치 btn을 배경을 lightgray으로 바꾼다
@@ -59,6 +65,11 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
                 map.setZoom(15, true)
             });
         }
+
+        $("#current-position-btn").click(() => {
+            map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
+            map.setZoom(15, true)
+        });
         //
     });
 } else {
@@ -75,35 +86,82 @@ naver.maps.Event.addListener(map, 'tap, click', function(e) { // 지도의 어�
         map: map,
         // 기본 마커는 없에고, 현재 위치만 표시하고, 현재 위치로 레이아웃을 잡아요!!!
         icon: {
-            content: '<div class="mark"></div>'
+            content: '<div class="mark"></div>',
+            anchor: new naver.maps.Point(10, 10) // 마커를 생성시 커서의 위치에 맞게 생성되요
         }
     });
 
     var markLatLng = e.latlng;
     mark.setPosition(markLatLng);
 
-    //marker.setMap(map);
-    if(mark.getMap()) { // 마커를 다시 클릭시 마커를 삭제해요!
+    if(mark.getMap()) {
         naver.maps.Event.addListener(mark, 'doubletap, dblclick', function(e) {
             mark.setMap(null);
         });
 
         naver.maps.Event.addListener(mark, 'tap, click', function(e) {
-            map.setCenter(new naver.maps.LatLng(markLatLng)); // 마커를 클릭하면 마커를 중심으로 확대되요
-            map.setZoom(15, true)
+            map.setCenter(new naver.maps.LatLng(markLatLng));
         });
     }
 });
 
 // data mark (사용자 수정 불가)
+var dataMarkList = [];
+var postsWindowList = [];
+
 for (var i in data) {
     var target = data[i]; // 위도, 경도
     var dataPosition = new naver.maps.LatLng(target.lat, target.lng);
-    var dataMark = new naver.maps.Marker({ // dataMark 배열에 요소를 한개 씩 추가
+    var dataMark = new naver.maps.Marker({
         map: map,
         position: dataPosition,
         icon: {
-            content: '<div class="dataMark"></div>'
+            content: '<div class="dataMark"></div>',
+            anchor: new naver.maps.Point(10, 10)
         }
     });
-};
+
+    var content = `
+        <div class='posts-window-container'>
+            <section id='posts-window-title'>
+                ${target.title}
+            </section>
+
+            <section id='posts-window-content'>
+                ${target.content}
+            </section>
+
+            <section id='posts-window-data'>
+                ${target.data}
+            </section>
+        </div>
+    `;
+
+    var postsWindow = new naver.maps.InfoWindow({
+        content: content,
+        backgroundColor: "#00ff0000",
+        borderColor: "#00ff0000",
+        anchorSize: new naver.maps.Size(0, 0),
+    });
+
+    dataMarkList.push(dataMark);
+    postsWindowList.push(postsWindow);
+}
+
+for (var i = 0, ii = dataMarkList.length; i < ii; i++){
+    naver.maps.Event.addListener(dataMarkList[i], "click", getClickHandler(i));
+}
+
+function getClickHandler(i) {
+    return function () {
+        var dataMark = dataMarkList[i];
+        var postsWindow = postsWindowList[i];
+
+        
+        if (postsWindow.getMap()) {
+            postsWindow.close();
+        } else {
+            postsWindow.open(map, dataMark);
+        }
+    }
+}

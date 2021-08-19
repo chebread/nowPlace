@@ -50,8 +50,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-
-   
 }
 
 #current-position-btn:hover {
@@ -135,4 +133,26 @@ footer {
         box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
         moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
     }
+}
+
+.posts-window-container {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    padding: 20px;
+}
+
+#posts-window-title {
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+#posts-window-content {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+#posts-window-data {
+    font-size: 13px;
+    font-weight: normal;
 }
