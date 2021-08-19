@@ -47,31 +47,6 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
                 "background-color": "lightgray"
             });
         })
-
-        // test current position mark logic
-        
-        var nowMark = new naver.maps.Marker({
-            map: map,
-            position: new naver.maps.LatLng(37.3595704, 127.105399), // 현재 위치를 받아와요
-            icon: {
-                content: '<div class="nowMark"></div>'
-            }
-        });
-
-        map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
-
-        if (nowMark.getMap()) {
-            naver.maps.Event.addListener(nowMark, 'tab, click', function(e) {
-                map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
-            });
-        }
-
-        $("#current-position-btn").click(() => {
-            map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
-            map.setZoom(15, true)
-        });
-        
-        //
     });
 } else {
     $(function() {
