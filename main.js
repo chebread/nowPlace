@@ -1,6 +1,6 @@
 var options = {
     center: new naver.maps.LatLng(37.3595704, 127.105399), // 기본 위치에요
-    zoom: 5,
+    zoom: 6,
     scaleControl: false, // 스케일 컨트롤을 삭제해요
 };
 
@@ -49,7 +49,7 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
         })
 
         // test current position mark logic
-        /*
+        
         var nowMark = new naver.maps.Marker({
             map: map,
             position: new naver.maps.LatLng(37.3595704, 127.105399), // 현재 위치를 받아와요
@@ -71,7 +71,7 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
             map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
             map.setZoom(15, true)
         });
-        */
+        
         //
     });
 } else {
@@ -167,3 +167,27 @@ function getClickHandler(i) {
         }
     }
 }
+
+var nowZoom = map.getZoom(); // 기본 값은 기본 줌 레벨값
+
+naver.maps.Event.addListener(map, 'zoom_changed', function (zoom) {
+    nowZoom = zoom;
+});
+
+
+$("#zoom-plus-btn").click(() => {
+    
+    if (nowZoom != 21) {
+        nowZoom += 1;
+    }
+
+    map.setZoom(nowZoom, true)
+});
+
+$("#zoom-min-btn").click(() => {
+    if (nowZoom != 6) {
+        nowZoom = nowZoom - 1;
+    }
+
+    map.setZoom(nowZoom, true)
+});

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var map = new naver.maps.Map('map', {
+    zoom: 4,
+    center: new naver.maps.LatLng(37.3614483, 127.1114883),
+    padding: { top: 100 },
+    zoomControl:true,
+    zoomControlOptions: {
+        style: naver.maps.ZoomControlStyle.SMALL
+    }
+});
+
+var contentEl = $('<div class="iw_inner" style="width:350px;position:absolute;top:0;right:0;z-index:1000;background-color:#fff;border:solid 1px #333;">'
+    + '<h3>Map States</h3>'
+    + '<p style="font-size:14px;">zoom : <em class="zoom">'+ map.getZoom() +'</em></p>'
+    + '<p style="font-size:14px;">center : <em class="center">'+ map.getCenter() +'</em></p>'
+    + '<p style="font-size:14px;">bounds : <em class="bounds">'+ map.getBounds() +'</em></p>'
+    + '</div>');
+
+contentEl.appendTo(map.getElement());
+
+naver.maps.Event.addListener(map, 'zoom_changed', function(zoom) {
+    contentEl.find('.zoom').text(zoom);
+});
+
+naver.maps.Event.addListener(map, 'bounds_changed', function(bounds) {
+    contentEl.find('.center').text(map.getCenter());
+    contentEl.find('.bounds').text(bounds);
+});
+    </script>
+</body>
+</html>
