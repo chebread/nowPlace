@@ -84,13 +84,13 @@ footer {
 }
 
 .mark {
-    border: lightgray solid 1.5px;
-    background-color:lemonchiffon;
+    border:darkblue solid 0.5px;
+    background-color:royalblue;
 
     width: 20px;
     height: 20px;
 
-    border-radius: 50%;
+    border-radius: 35%;
 }
 
 @keyframes pulse {

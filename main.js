@@ -1,6 +1,6 @@
 var options = {
     center: new naver.maps.LatLng(37.3595704, 127.105399), // 기본 위치에요
-    zoom: 20,
+    zoom: 17,
     scaleControl: false, // 스케일 컨트롤을 삭제해요
 };
 
@@ -54,7 +54,7 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
         map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
 
         if (nowMark.getMap()) {
-            naver.maps.Event.addListener(nowMark, 'click', function(e) {
+            naver.maps.Event.addListener(nowMark, 'tab, click', function(e) {
                 map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
             });
         }
@@ -77,11 +77,19 @@ naver.maps.Event.addListener(map, 'tap, click', function(e) { // 지도의 어�
             content: '<div class="mark"></div>'
         }
     });
-    mark.setPosition(e.latlng);
+
+    var markLatLng = e.latlng;
+    mark.setPosition(markLatLng);
+
     //marker.setMap(map);
     if(mark.getMap()) { // 마커를 다시 클릭시 마커를 삭제해요!
         naver.maps.Event.addListener(mark, 'doubletap, dblclick', function(e) {
             mark.setMap(null);
+        });
+
+        naver.maps.Event.addListener(mark, 'tap, click', function(e) {
+            map.setCenter(new naver.maps.LatLng(markLatLng)); // 마커를 클릭하면 마커를 중심으로 확대되요
+            map.setZoom(17, true)
         });
     }
 });
