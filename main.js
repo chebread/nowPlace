@@ -36,7 +36,7 @@ if (navigator.geolocation) { // 현재 위치 기능을 브라우저가 지원�
         }
 
         $("#current-position-btn").click(() => {
-            map.setCenter(new naver.maps.LatLng(37.3595704, 127.105399));
+            map.setCenter(nowPosition);
             map.setZoom(15, true)
         })
     }, function () {
