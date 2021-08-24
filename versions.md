@@ -8,3 +8,6 @@
 - Edit footer layout (Remove border-둥글기) 
 - Edit zoom btn layout (Remove border-둥글기)
 - In this version, we tried to keep the layout and functions simple! 😎
+
+### v3.2.1 (21/8/24)
+Edit logo language, because it is beautiful!
