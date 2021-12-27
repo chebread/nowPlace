@@ -7,7 +7,7 @@
 [Nowplace](https://nowplace.netlify.app) 의 주소를 **Chrome, Safari, ...** 의 주소 상자에 입력하여 사용해주세요!
 
 ## 버전
-✋ 현재 버전: v3.2.2 (21/12/27)
+✋ 현재 버전: v3.2.3 (21/12/27)
 
 ## 라이센스
 - 누구나 사용할 수 있도록, MIT License 를 사용해요!
